@@ -11,11 +11,12 @@ export class GqlController {
     }
     
   @Get()
-   async download(@Query() query):Promise<string> {
+   async download(@Query() query,@Res() res):Promise<string> {
     console.log(query.lower);
     const result = await this.gqlR.sendGqlReq(query.lower, query.higher);
     await this.notification.broadcast(`${query.higher} to  ${query.lower} csv sended !`);
-    return result;
+
+    return res.download("f:\\41682.jpg");
   }
 
   

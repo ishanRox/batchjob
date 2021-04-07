@@ -13,7 +13,7 @@ import { MessagesModule } from './messages/messages.module';
 import { GqlRequestModule } from './gql-request/gql-request.module';
 import { BullJobModule } from './bull-job/bull-job.module';
 import { SendGqlReqService } from './gql-request/send-gql-req.service';
-import { GqlController } from './csvdownloder/gql.controller';
+import { GqlController } from './csvdownloder/csvdownload.controller';
 
 
 @Module({

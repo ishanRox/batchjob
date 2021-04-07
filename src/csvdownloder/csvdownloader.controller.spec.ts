@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { GqlController } from './gql.controller';
+import { GqlController } from './csvdownload.controller';
 
 describe('GqlController', () => {
   let controller: GqlController;

@@ -4,6 +4,7 @@ type Message {
 }
 
 type Vehical {
+      id:String
       firstName: String
       lastName: String
       email: String
@@ -21,4 +22,12 @@ type Query {
 
 type Mutation {
   createMessage(age: String!): [Vehical]!
+}
+
+type Mutation {
+   getTable(offsetCount: String!,first: String!): [Vehical]!
+}
+
+type Mutation {
+   getTableById(id: String!): [Vehical]!
 }
