@@ -1,0 +1,24 @@
+type Message {
+  id: Int!
+  description: String
+}
+
+type Vehical {
+      firstName: String
+      lastName: String
+      email: String
+      carMake: String
+      carModel: String
+      vinNumber: String
+      manufacturedDate: String
+      ageOfVehicle: String
+      vid: String
+}
+
+type Query {
+  messages: [Message]!
+}
+
+type Mutation {
+  createMessage(age: String!): [Vehical]!
+}
