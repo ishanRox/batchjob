@@ -29,5 +29,14 @@ type Mutation {
 }
 
 type Mutation {
-   getTableById(id: String!): [Vehical]!
+   getTableById(id: String!): Vehical
+}
+
+type Mutation{
+    updateRow(id:  String!, fname:  String, lname: String, vid: String, email: String): Vehical
+}
+
+
+type Mutation{
+deleteVehicalById(id: String!):Vehical
 }

@@ -74,13 +74,11 @@ export class MessageResolver {
 
 
     @Mutation()
-    async getTableById(@Args('id')id) {
+    async getTableById(@Args('id') id) {
 
         console.log(id);
-      
-
           const query = gql`{
-            vehicalById(id: ${id}) {
+            vehicalById(id: "${id}") {
               id
               vid
               firstName
@@ -97,8 +95,73 @@ export class MessageResolver {
         `;
 
         return await request('http://localhost:5000/graphql', query).then((data) => {
-            console.log(data.allVehicals.nodes);
-            return data.allVehicals.nodes;
+            console.log(JSON.stringify(data));
+            return data.vehicalById;
+        });
+        
+    }
+
+
+    @Mutation()
+    async updateRow(@Args('id') id,
+    @Args('fname')fname, @Args('lname')lname, @Args('vid')vid, @Args('email')email) {
+        console.log(id);
+
+          const query = gql`mutation {
+          updateVehicalById(
+            input: {id: "${id}", vehicalPatch: {firstName: "${fname}", lastName: "${lname}", email: "${email}", vid: "${vid}"}}
+          ) {
+            vehical {
+              id
+              vid
+              firstName
+              lastName
+              email
+              carMake
+              carModel
+              vinNumber
+              manufacturedDate
+              ageOfVehicle
+            }
+          }
+        }
+      `;
+
+        return await request('http://localhost:5000/graphql', query).then((data) => {
+        console.log('________________')
+        console.log(JSON.stringify(data));
+            return data.updateVehicalById.vehical;
+        });
+        
+    }
+
+    
+    @Mutation()
+    async deleteVehicalById(@Args('id') id) {
+        console.log(id);
+
+          const query = gql`mutation {
+            deleteVehicalById(input: { id: "${id}" }) {
+              vehical{
+              id
+              vid
+              firstName
+              lastName
+              email
+              carMake
+              carModel
+              vinNumber
+              manufacturedDate
+              ageOfVehicle
+              }
+            }
+          }
+      `;
+
+        return await request('http://localhost:5000/graphql', query).then((data) => {
+        console.log('________________')
+        console.log(JSON.stringify(data));
+            return data.deleteVehicalById.vehical;
         });
         
     }
