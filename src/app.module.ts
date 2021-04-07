@@ -13,13 +13,14 @@ import { MessagesModule } from './messages/messages.module';
 import { GqlRequestModule } from './gql-request/gql-request.module';
 import { BullJobModule } from './bull-job/bull-job.module';
 import { SendGqlReqService } from './gql-request/send-gql-req.service';
+import { GqlController } from './csvdownloder/gql.controller';
 
 
 @Module({
   imports: [GraphQLModule.forRoot({
     typePaths: ['./**/*.graphql']
   }), MessagesModule, GqlRequestModule, BullJobModule],
-  controllers: [AppController],
+  controllers: [AppController, GqlController],
   providers: [AppService,ChatGateway, WebsocketServerService, SendGqlReqService],
 })
 export class AppModule  implements OnModuleInit {

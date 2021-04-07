@@ -18,16 +18,4 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('download')
-  async download(@Query() query, @Res() res) {
-    console.log(query.lower);
-    const result = await this.gqlR.sendGqlReq(query.lower, query.higher);
-
-    res.setHeader('Content-Type', 'application/octet-stream');
-    // res.attachment()
-    await this.notification.broadcast(`${query.higher} to  ${query.lower} csv sended !`);
-    return res.download("f:\\basic.txt");
-  }
-
-
 }
