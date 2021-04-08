@@ -40,3 +40,7 @@ type Mutation{
 type Mutation{
 deleteVehicalById(id: String!):Vehical
 }
+
+type Mutation{
+searchModelFromGraphql(model:String!):[Vehical]!
+}

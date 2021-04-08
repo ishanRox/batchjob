@@ -165,5 +165,40 @@ export class MessageResolver {
         });
         
     }
+
+
+    @Mutation()
+    async searchModelFromGraphql(@Args('model') model) {
+        console.log(model);
+
+          const query = gql`{
+            allVehicals(
+             filter: {
+              carModel: { like:"${model}" }
+            }
+          ) {
+              nodes {
+                id
+                vid
+                firstName
+                lastName
+                email
+                carMake
+                carModel
+                vinNumber
+                manufacturedDate
+                ageOfVehicle
+              }
+            }
+          }        
+        `;
+
+        return await request('http://localhost:5000/graphql', query).then((data) => {
+        console.log('________________')
+        console.log(JSON.stringify(data));
+            return data.allVehicals.nodes;
+        });
+        
+    }
 }
 
