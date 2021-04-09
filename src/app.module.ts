@@ -15,14 +15,16 @@ import { BullJobModule } from './bull-job/bull-job.module';
 import { SendGqlReqService } from './gql-request/send-gql-req.service';
 import { GqlController } from './csvdownloder/csvdownload.controller';
 import { CsvFileSaveService } from './csv-file-save/csv-file-save.service';
+import { BullJobService } from './bull-job/bull-job.service';
+import { WebSocketModule } from './websocket-server/websocket.module';
 
 
 @Module({
   imports: [GraphQLModule.forRoot({
     typePaths: ['./**/*.graphql']
-  }), MessagesModule, GqlRequestModule, BullJobModule],
+  }), MessagesModule, GqlRequestModule, BullJobModule,WebSocketModule],
   controllers: [AppController, GqlController],
-  providers: [AppService,ChatGateway, WebsocketServerService, SendGqlReqService, CsvFileSaveService],
+  providers: [AppService,ChatGateway, SendGqlReqService, CsvFileSaveService,BullJobService],
 })
 export class AppModule  implements OnModuleInit {
   async onModuleInit() {
