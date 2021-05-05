@@ -27,7 +27,7 @@ export class SendGqlReqService {
         `;
      
              return await request('http://localhost:5000/graphql', query).then((data) => {
-                 console.log(data.allVehicals.nodes);
+                // console.log(data.allVehicals.nodes);
                  return data.allVehicals.nodes;
              });
     }

@@ -17,6 +17,7 @@ import { GqlController } from './csvdownloder/csvdownload.controller';
 import { CsvFileSaveService } from './csv-file-save/csv-file-save.service';
 import { BullJobService } from './bull-job/bull-job.service';
 import { WebSocketModule } from './websocket-server/websocket.module';
+import { SocketclusterService } from './socketcluster/socketcluster.service';
 
 
 @Module({
@@ -24,7 +25,7 @@ import { WebSocketModule } from './websocket-server/websocket.module';
     typePaths: ['./**/*.graphql']
   }), MessagesModule, GqlRequestModule, BullJobModule,WebSocketModule],
   controllers: [AppController, GqlController],
-  providers: [AppService,ChatGateway, SendGqlReqService, CsvFileSaveService,BullJobService],
+  providers: [AppService,ChatGateway, SendGqlReqService, CsvFileSaveService,BullJobService, SocketclusterService],
 })
 export class AppModule  implements OnModuleInit {
   async onModuleInit() {

@@ -39,9 +39,12 @@
     "postgraphile-apollo-server": "^0.1.1",
     "postgraphile-nest": "^1.0.6",
     "postgraphile-plugin-connection-filter": "^2.1.1",
+    "redis-commander": "^0.7.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6",
+    "socketcluster-client": "^16.0.2",
+    "socketcluster-server": "^16.0.1",
     "ws": "^7.4.4"
   },
   "devDependencies": {
