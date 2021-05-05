@@ -6,11 +6,9 @@ export class SocketclusterService {
   http = require('http');
   socketClusterServer = require('socketcluster-server');
   options = {
-
   };
   httpServer = this.http.createServer();
   agServer = this.socketClusterServer.attach(this.httpServer, this.options);
-
 
   async startSocketClusterServer() {
 
@@ -20,51 +18,35 @@ export class SocketclusterService {
     (async () => {
       // Handle new inbound sockets.
       for await (let { socket } of this.agServer.listener('connection')) {
-
         connections.push(socket);
         connections.forEach(e => console.log('array' + e.id));
-        // // SocketCluster/WebSocket connection handling loop.
-        // async function sendData() {
-        //   for await (let { socket } of agServer.listener('connection')) {
-
-        (async () => {
-          // Set up a loop to handle remote transmitted events.
-          for await (let data of socket.receiver('customRemoteEvent')) {
-            // ...
-            console.log(data);
-            this.uidChannels.push(data);
-            console.log("received");
-
-          }
-        })();
+      
+        // (async () => {
+        //   // Set up a loop to handle remote transmitted events.
+        //   for await (let data of socket.receiver('customRemoteEvent')) {
+        //     // ...
+        //     console.log(data + "channel data that received");
+        //     this.uidChannels.push(data);
+        //     console.log("received");
 
         //   }
-        // };
-
-        // sendData();
+        // })();
 
       }
     })();
-
-
-    // ... After the socket is created.
-
-
-
-
 
     // port 8000
     this.httpServer.listen(8000);
   }
 
-  sendMessage() {
+ async sendMessage(uidChannel: string,fileInfo:any) {
     console.log('messages Sended');
     // this.uidChannels.forEach(e=>{
 
     // this.agServer.exchange.transmitPublish(e, 'This is some data');
     // });
-
-    this.agServer.exchange.transmitPublish(this.uidChannels[0], 'This is some data');
-    this.agServer.exchange.transmitPublish('customRemoteEvent', 'This is some data');
+    console.log(uidChannel+" received channel ");
+  await  this.agServer.exchange.transmitPublish(uidChannel, 'This is some data for out ' + uidChannel+JSON.stringify(fileInfo));
+  await  this.agServer.exchange.transmitPublish('customRemoteEvent', 'This is some data');
   }
 }

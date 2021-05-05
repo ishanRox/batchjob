@@ -12,6 +12,7 @@ export class BullJobService {
     constructor(private socketServer: SocketclusterService, private csvSave: CsvFileSaveService, private gqlR: SendGqlReqService, private notification: WebsocketServerService) {
     }
     async saveCsvToServer(fileInfo): Promise<string> {
+        console.log(JSON.stringify(fileInfo) + '  received query');
         var vs = this.csvSave;
         var gqlR = this.gqlR;
         var notification = this.notification;
@@ -23,7 +24,7 @@ export class BullJobService {
                 const result = await gqlR.sendGqlReq(job.data.higher, job.data.lower);
                 await vs.saveCsvFile(result);
                 await notification.broadcast(`${job.data.higher} to  ${job.data.lower} vehical age csv saved in server !`);
-                socketServer.sendMessage();
+                socketServer.sendMessage(job.data.uidChannel,fileInfo);
                 done(null, { status: result /* etc... */ });
             } catch (error) {
                 console.log(error);
