@@ -40,12 +40,8 @@ export class SocketclusterService {
   }
 
  async sendMessage(uidChannel: string,fileInfo:any) {
-    console.log('messages Sended');
-    // this.uidChannels.forEach(e=>{
-
-    // this.agServer.exchange.transmitPublish(e, 'This is some data');
-    // });
-    console.log(uidChannel+" received channel ");
+    console.log('messages Sended to client');
+    console.log(uidChannel+" received channel "+JSON.stringify(fileInfo));
   await  this.agServer.exchange.transmitPublish(uidChannel, 'This is some data for out ' + uidChannel+JSON.stringify(fileInfo));
   await  this.agServer.exchange.transmitPublish('customRemoteEvent', 'This is some data');
   }

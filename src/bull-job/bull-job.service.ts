@@ -20,11 +20,10 @@ export class BullJobService {
         var socketServer = this.socketServer;
         saveCsvToServerQueue.process(async function (job, done) {
             try {
-                console.log(job.data);
                 const result = await gqlR.sendGqlReq(job.data.higher, job.data.lower);
                 await vs.saveCsvFile(result);
                 await notification.broadcast(`${job.data.higher} to  ${job.data.lower} vehical age csv saved in server !`);
-                socketServer.sendMessage(job.data.uidChannel,fileInfo);
+
                 done(null, { status: result /* etc... */ });
             } catch (error) {
                 console.log(error);
@@ -34,6 +33,7 @@ export class BullJobService {
 
         const myJob = await saveCsvToServerQueue.add(fileInfo, { delay: 1000 });
         let statusObj = await myJob.finished();
+        await socketServer.sendMessage(fileInfo.uidChannel, fileInfo);
         console.log(statusObj.status);
         return statusObj.status;
 
