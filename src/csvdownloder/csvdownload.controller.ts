@@ -3,11 +3,10 @@ import { AppService } from '../app.service';
 import { BullJobService } from '../bull-job/bull-job.service';
 import { SendGqlReqService } from '../gql-request/send-gql-req.service';
 import { SocketclusterService } from '../socketcluster/socketcluster.service';
-import { WebsocketServerService } from '../websocket-server/websocket-server.service';
 
 @Controller('download')
 export class GqlController {
-  constructor(private socketServer:SocketclusterService, private bullJob: BullJobService, private gqlR: SendGqlReqService, private readonly appService: AppService, private notification: WebsocketServerService) {
+  constructor(private socketServer:SocketclusterService, private bullJob: BullJobService, private gqlR: SendGqlReqService, private readonly appService: AppService) {
 
     socketServer.startSocketClusterServer();
   }
