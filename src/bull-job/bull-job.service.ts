@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { CsvFileSaveService } from 'src/csv-file-save/csv-file-save.service';
-import { SendGqlReqService } from 'src/gql-request/send-gql-req.service';
-import { SocketclusterService } from 'src/socketcluster/socketcluster.service';
-import { WebsocketServerService } from 'src/websocket-server/websocket-server.service';
+import { CsvFileSaveService } from '../csv-file-save/csv-file-save.service';
+import { SendGqlReqService } from '../gql-request/send-gql-req.service';
+import { SocketclusterService } from '../socketcluster/socketcluster.service';
+import { WebsocketServerService } from '../websocket-server/websocket-server.service';
 
 @Injectable()
 export class BullJobService {
