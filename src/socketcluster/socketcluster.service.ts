@@ -42,7 +42,7 @@ export class SocketclusterService {
  async sendMessage(uidChannel: string,fileInfo:any) {
     console.log('messages Sended to client');
     console.log(uidChannel+" received channel "+JSON.stringify(fileInfo));
-  await  this.agServer.exchange.transmitPublish(uidChannel, `File saved in the server succesfully with  limits higher than :${fileInfo.higher} and lower than :${fileInfo.lower}` );
+  await  this.agServer.exchange.transmitPublish(uidChannel, `File saved in the server succesfully with age limits higher than :${fileInfo.higher} and lower than :${fileInfo.lower}` );
   await  this.agServer.exchange.transmitPublish('customRemoteEvent', 'This is some data');
   }
 }
