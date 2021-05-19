@@ -13,7 +13,7 @@ describe('GqlController', () => {
       providers:[AppService,BullJobService,SendGqlReqService,SocketclusterService,CsvFileSaveService],
       
       controllers: [GqlController],
-    }).overrideProvider(SocketclusterService).useValue({}).compile();
+    }).compile();
 
     controller = module.get<GqlController>(GqlController);
   });
